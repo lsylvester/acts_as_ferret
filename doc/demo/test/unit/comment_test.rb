@@ -34,7 +34,7 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   def test_class_index_dir
-    assert Comment.aaf_configuration[:index_dir] =~ %r{^#{RAILS_ROOT}/index/test/comment}
+    assert Comment.aaf_configuration[:index_dir] =~ %r{^#{Rails.root}/index/test/comment}
   end
 
   def test_aliased_field
