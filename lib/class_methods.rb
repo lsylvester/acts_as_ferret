@@ -145,14 +145,14 @@ module ActsAsFerret
     # +page+ and +per_page+ are supposed to work regardless of any 
     # +conitions+ present in +find_options+.
     def find_with_ferret(q, options = {}, find_options = {})
-      if respond_to?(:scope) && scope(:find, :conditions)
+      if respond_to?(:scoped) && scoped.respond_to?(:where_values) && scoped.where_values.select{|w| w.is_a?(String)}.present?
         if find_options[:conditions]
-          find_options[:conditions] = "(#{find_options[:conditions]}) AND (#{scope(:find, :conditions)})"
+          find_options[:conditions] = "(#{find_options[:conditions]}) AND (#{scoped.where_values.select{|w| w.is_a?(String)}})"
         else
-          find_options[:conditions] = scope(:find, :conditions)
+          find_options[:conditions] = scoped.where_values.select{|w| w.is_a?(String)}
         end
       end
-      return ActsAsFerret::find q, self, options, find_options
+      ActsAsFerret::find q, self, options, find_options
     end 
 
 
