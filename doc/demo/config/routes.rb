@@ -2,10 +2,14 @@ Demo::Application.routes.draw do |map|
   resources :contents
   match 'search', :to => 'searches#search', :as => 'search'
 
-
+  namespace :admin do
+    match ':controller(/:action(/:id(.:format)))'  
+  end
+  match '/bar', :to => "admin/backend#search"
+  match '/car', :to => "admin/backend#show"
   # Install the default route as the lowest priority.
   match ':controller(/:action(/:id(.:format)))'  
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

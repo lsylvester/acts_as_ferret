@@ -22,7 +22,7 @@ class Admin::BackendControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'search'
     assert_nil assigns(:results)
-
+    
     post :search, :query => 'title'
     assert_template 'search'
     assert_equal 1, assigns(:results).size
