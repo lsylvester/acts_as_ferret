@@ -6,4 +6,4 @@ index/*
 doc/demo/index/*
 doc/demo/db/schema.rb
 doc/demo/vendor/plugins/acts_as_ferret
-
+doc/demo/vendor/rails/

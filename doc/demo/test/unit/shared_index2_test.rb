@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SharedIndex2Test < Test::Unit::TestCase
+class SharedIndex2Test < ActiveSupport::TestCase
   fixtures :shared_index2s, :shared_index1s
 
   def setup

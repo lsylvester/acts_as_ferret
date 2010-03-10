@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SpecialContentTest < Test::Unit::TestCase
+class SpecialContentTest < ActiveSupport::TestCase
   include Ferret::Index
   include Ferret::Search
   fixtures :contents, :comments

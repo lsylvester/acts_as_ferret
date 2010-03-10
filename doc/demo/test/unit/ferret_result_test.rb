@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'pp'
 require 'fileutils'
 
-class FerretResultTest < Test::Unit::TestCase
+class FerretResultTest < ActiveSupport::TestCase
   fixtures :contents
 
   def teardown

@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'pp'
 require 'fileutils'
 
-class ContentTest < Test::Unit::TestCase
+class ContentTest < ActiveSupport::TestCase
   include Ferret::Index
   include Ferret::Search
   fixtures :contents, :comments
