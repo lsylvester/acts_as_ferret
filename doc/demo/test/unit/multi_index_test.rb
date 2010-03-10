@@ -55,23 +55,24 @@ class MultiIndexTest < ActiveSupport::TestCase
     sorting = [ Ferret::Search::SortField.new(:id) ]
     result = ActsAsFerret::find('*:title OR *:comment', [Content, Comment], :sort => sorting)
     assert_equal result.map(&:id).sort, result.map(&:id)
-
+    
     sorting = [ Ferret::Search::SortField.new(:title) ]
     result = ActsAsFerret::find('*:title OR *:comment', [Content, Comment], :sort => sorting)
     sorting = [ Ferret::Search::SortField.new(:title, :reverse => true) ]
     result2 = ActsAsFerret::find('*:title OR *:comment', [Content, Comment], :sort => sorting)
     assert result.any?
     assert result.map(&:id) != result2.map(&:id)
-
+    
     result = ActsAsFerret::find('*:title OR *:comment', [Content, Comment ])
     assert result.any?
     assert_equal result.map(&:ferret_score).sort.reverse, result.map(&:ferret_score)
-
+    
+    Ferret::Search::Sort.new([Ferret::Search::SortField::SCORE], :reverse => true) if Ferret::Search::SortField::SCORE.reverse? #flip back it reversed. Don't think that Making a new search should alter the sort column
     sorting = [ Ferret::Search::SortField::SCORE ]
     result = ActsAsFerret::find('*:title OR *:comment', [Content, Comment ], :sort => sorting)
     assert result.any?
     assert_equal result.map(&:ferret_score).sort.reverse, result.map(&:ferret_score)
-
+    
     sorting = [ Ferret::Search::SortField::SCORE_REV ]
     result2 = ActsAsFerret::find('*:title OR *:comment', [Content, Comment], :sort => sorting)
     assert_equal result2.map(&:ferret_score).sort, result2.map(&:ferret_score)
